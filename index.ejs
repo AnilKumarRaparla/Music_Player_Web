@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Music Player</title>
+  <script>
+    function searchSongs() {
+      const searchTerm = document.getElementById('search').value;
+      window.location.href = '/search?q=' + encodeURIComponent(searchTerm);
+    }
+  </script>
+</head>
+<body bgcolor="pink">
+  <!-- Update index.ejs to include a search box -->
+  <h1 style="margin-left: 3%; color: rgb(12, 26, 224);">Music Player</h1>
+
+<div style="margin-left: 40px; border-radius: 20px;">
+  <input type="text" id="search" placeholder="Search songs" style="border-radius: 20px; width: 20%; background-color:lightyellow;">
+  <button onclick="searchSongs()" style="border-radius: 20px; background-color: aqua;">Search</button>
+</div>
+  <ol style="text-align: left ;">
+    <% audioFiles.forEach((file) => { %>
+      <li>
+        <audio controls style="border: 80%;background-color: brown;">
+          <source src="<%= file.path %>" type="audio/mpeg">
+          Your browser does not support the audio element.
+        </audio>
+        <%= file.name %>
+      </li>
+    <% }); %>
+  </ol>
+</body>
+</html>
